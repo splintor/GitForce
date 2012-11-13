@@ -42,6 +42,7 @@
             this.menuSortFilesByExtension = new System.Windows.Forms.ToolStripMenuItem();
             this.btRefresh = new System.Windows.Forms.ToolStripButton();
             this.btListView = new System.Windows.Forms.ToolStripButton();
+            this.btExpandAll = new System.Windows.Forms.ToolStripButton();
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.dummyItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeView = new GitForce.TreeViewEx();
@@ -55,7 +56,8 @@
             this.viewLabel,
             this.dropViewMode,
             this.btRefresh,
-            this.btListView});
+            this.btListView,
+            this.btExpandAll});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(400, 25);
@@ -162,6 +164,18 @@
             this.btListView.Text = "Toggle between list or tree views";
             this.btListView.Click += new System.EventHandler(this.BtListViewClick);
             // 
+            // btExpandAll
+            // 
+            this.btExpandAll.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.btExpandAll.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btExpandAll.Image = ((System.Drawing.Image)(resources.GetObject("btExpandAll.Image")));
+            this.btExpandAll.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btExpandAll.ImageTransparentColor = System.Drawing.Color.Black;
+            this.btExpandAll.Name = "btExpandAll";
+            this.btExpandAll.Size = new System.Drawing.Size(23, 22);
+            this.btExpandAll.Text = "Expand All";
+            this.btExpandAll.Click += new System.EventHandler(this.MenuExpandAll);
+            // 
             // contextMenu
             // 
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -189,13 +203,13 @@
             this.treeView.Size = new System.Drawing.Size(400, 375);
             this.treeView.TabIndex = 1;
             this.treeView.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewAfterCollapse);
-            this.treeView.DoubleClick += new System.EventHandler(this.TreeViewDoubleClick);
-            this.treeView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TreeViewMouseUp);
-            this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewAfterSelect);
-            this.treeView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TreeViewMouseMove);
-            this.treeView.DragEnter += new System.Windows.Forms.DragEventHandler(this.TreeViewDragEnter);
             this.treeView.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewAfterExpand);
             this.treeView.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.TreeViewItemDrag);
+            this.treeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewAfterSelect);
+            this.treeView.DragEnter += new System.Windows.Forms.DragEventHandler(this.TreeViewDragEnter);
+            this.treeView.DoubleClick += new System.EventHandler(this.TreeViewDoubleClick);
+            this.treeView.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TreeViewMouseMove);
+            this.treeView.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TreeViewMouseUp);
             // 
             // PanelView
             // 
@@ -219,6 +233,7 @@
         private TreeViewEx treeView;
         private System.Windows.Forms.ToolStripLabel viewLabel;
         private System.Windows.Forms.ToolStripDropDownButton dropViewMode;
+        private System.Windows.Forms.ToolStripButton btExpandAll;
         private System.Windows.Forms.ToolStripButton btRefresh;
         private System.Windows.Forms.ToolStripMenuItem menuView0;
         private System.Windows.Forms.ToolStripMenuItem menuView1;

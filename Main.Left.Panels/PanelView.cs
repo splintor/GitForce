@@ -86,6 +86,7 @@ namespace GitForce.Main.Left.Panels
                 Status = App.Repos.Current.Status;
 
                 btListView.Checked = !Status.Repo.IsTreeView;
+                btExpandAll.Enabled = !btListView.Checked;
                 menuSortFilesByExtension.Checked = Status.Repo.SortBy == GitDirectoryInfo.SortBy.Extension;
 
                 List<string> files = new List<string>();
@@ -734,5 +735,10 @@ namespace GitForce.Main.Left.Panels
         }
 
         #endregion Handlers for file actions related to Git
+
+        private void MenuExpandAll(object sender, EventArgs e)
+        {
+            treeView.ExpandAll();
+        }
     }
 }
