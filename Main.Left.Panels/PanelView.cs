@@ -448,8 +448,12 @@ namespace GitForce.Main.Left.Panels
             ToolStripMenuItem mEdit = new ToolStripMenuItem("Edit Using");
             mEdit.DropDownItems.Add(mEditAssoc);
             string[] progs = Properties.Settings.Default.EditViewPrograms.Split(("\0").ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
-            foreach (string s in progs)
-                mEdit.DropDownItems.Add(new ToolStripMenuItem(Path.GetFileName(s), null, MenuViewEditClick) { Tag = s });
+            if (progs.Any())
+            {
+                mEdit.DropDownItems.Add(new ToolStripMenuItem(Path.GetFileName(progs[0]), null, MenuViewEditClick) { Tag = progs[0], ShortcutKeys = Keys.Control | Keys.Shift | Keys.Enter });
+                foreach (string s in progs.Skip(1))
+                    mEdit.DropDownItems.Add(new ToolStripMenuItem(Path.GetFileName(s), null, MenuViewEditClick) { Tag = s });
+            }
 
             ToolStripMenuItem mRevHist = new ToolStripMenuItem("Revision History...", null, MenuViewRevHistClick) { ShortcutKeys = Keys.Control | Keys.H };
             ToolStripMenuItem mRename = new ToolStripMenuItem("Move/Rename...", null, MenuViewRenameClick);
