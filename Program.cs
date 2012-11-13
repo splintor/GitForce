@@ -11,7 +11,7 @@ using System.Windows.Forms;
 
 namespace GitForce
 {
-    static class App
+    internal static class App
     {
         #region Application-wide delegates for various callbacks
 
@@ -19,8 +19,10 @@ namespace GitForce
         /// Multicast delegate for application-wide data refresh
         /// </summary>
         public delegate void RefreshDelegate();
+
         public static RefreshDelegate Refresh;
         private static bool inRefresh;
+
         /// <summary>
         /// Protect Refresh chain with a simple exit mutex, so that the F5 key (update)
         /// does not start a re-entrant refresh chain. Although the main GUI app is
@@ -41,25 +43,34 @@ namespace GitForce
         /// We do it via delegate since it might be called before the main form is created.
         /// </summary>
         public delegate void PrintStatusMessageHandler(string message);
+
         public static PrintStatusMessageHandler PrintStatusMessage = VoidMessage;
-        private static void VoidMessage(string m) { }
+
+        private static void VoidMessage(string m)
+        {
+        }
 
         /// <summary>
         /// Delegate to main form to set the busy status.
         /// We do it via delegate since it might be called before the main form is created.
         /// </summary>
         public delegate void SetBusyStatusHandler(bool isBusy);
+
         public static SetBusyStatusHandler StatusBusy = VoidBusy;
-        private static void VoidBusy(bool f) { }
+
+        private static void VoidBusy(bool f)
+        {
+        }
 
         /// <summary>
         /// Delegate to Log form to print a message in the log window.
         /// We do it via delegate since it might be called before or after log form is valid.
         /// </summary>
         public delegate void PrintLogMessageHandler(string message);
+
         public static PrintLogMessageHandler PrintLogMessage = VoidMessage;
 
-        #endregion
+        #endregion Application-wide delegates for various callbacks
 
         #region Static forms and classes
 
@@ -113,7 +124,7 @@ namespace GitForce
         /// </summary>
         public static FormMain MainForm;
 
-        #endregion
+        #endregion Static forms and classes
 
         #region Global variables
 
@@ -132,8 +143,8 @@ namespace GitForce
         /// <summary>
         /// Define a path to the user profile. This is normally mapped to users' $HOME
         /// </summary>
-        public static readonly string UserHome = 
-            Environment.GetEnvironmentVariable(ClassUtils.IsMono()? "HOME" : "HOMEPATH");
+        public static readonly string UserHome =
+            Environment.GetEnvironmentVariable(ClassUtils.IsMono() ? "HOME" : "HOMEPATH");
 
         /// <summary>
         /// If set to a file name, all log text will be mirrored to that file
@@ -141,13 +152,13 @@ namespace GitForce
         /// </summary>
         public static string AppLog;
 
-        #endregion
+        #endregion Global variables
 
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static int Main(string[] args)
+        private static int Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -166,7 +177,7 @@ namespace GitForce
             // Check that only one application instance is running
             bool mAcquired;
             Mutex mAppMutex = new Mutex(true, "gitforce", out mAcquired);
-            if(!mAcquired)
+            if (!mAcquired && Properties.Settings.Default.WarnMultipleInstances)
             {
                 if (MessageBox.Show("GitForce is already running.\nDo you want to open a new instance?", "Warning",
                     MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2) == DialogResult.No)
@@ -187,9 +198,10 @@ namespace GitForce
             {
                 // Initialize external diff program
                 Diff = new ClassDiff();
-                if( Diff.Initialize())
+                if (Diff.Initialize())
                 {
                     Merge = new ClassMerge();
+
                     // Initialize external Merge program
                     if (Merge.Initialize())
                     {

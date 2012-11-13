@@ -51,10 +51,12 @@
             System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Aliases");
             System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Specifications");
             System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("SSL");
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Options", new System.Windows.Forms.TreeNode[] {
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("Multiple Instances");
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Options", new System.Windows.Forms.TreeNode[] {
             treeNode12,
             treeNode13,
-            treeNode14});
+            treeNode14,
+            treeNode15});
             this.panel = new System.Windows.Forms.Panel();
             this.btOK = new System.Windows.Forms.Button();
             this.btCancel = new System.Windows.Forms.Button();
@@ -64,9 +66,9 @@
             // 
             // panel
             // 
-            this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel.Location = new System.Drawing.Point(176, 12);
             this.panel.Name = "panel";
             this.panel.Size = new System.Drawing.Size(321, 249);
@@ -108,8 +110,8 @@
             // 
             // treeSections
             // 
-            this.treeSections.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.treeSections.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.treeSections.Font = new System.Drawing.Font("Segoe UI Symbol", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeSections.HideSelection = false;
             this.treeSections.Location = new System.Drawing.Point(12, 12);
@@ -155,12 +157,15 @@
             treeNode14.Name = "Node0";
             treeNode14.Tag = "Ssl";
             treeNode14.Text = "SSL";
-            treeNode15.Name = "Node2";
-            treeNode15.Text = "Options";
+            treeNode15.Name = "Node0";
+            treeNode15.Tag = "MultipleInstances";
+            treeNode15.Text = "Multiple Instances";
+            treeNode16.Name = "Node2";
+            treeNode16.Text = "Options";
             this.treeSections.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode6,
             treeNode11,
-            treeNode15});
+            treeNode16});
             this.treeSections.Size = new System.Drawing.Size(158, 278);
             this.treeSections.TabIndex = 5;
             this.treeSections.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeSectionsAfterSelect);
